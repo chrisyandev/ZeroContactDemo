@@ -1,0 +1,475 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+/* ------------------------------------------------------------------- */
+/* Inventory and Item styling for the minigame */
+/* ------------------------------------------------------------------- */
+
+#game-inventory-container {
+    position: absolute;
+    z-index: 3;
+    left: 25%;
+    top: 90%;
+    width: 50%;
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    transition: 0.3s;
+    transform: translateX(0%);
+}
+
+#game-inventory-expand-button {
+    display: block;
+    height: 50px;
+    background-color: #222034;
+    box-sizing: border-box;
+    color: #dddfcb;
+    border-color: #dddfcb;
+    left: 25%;
+}
+
+#inventory-item-container {
+    transition: 0.3s;
+    display: grid;
+    padding: 0px 0px;
+    justify-content: space-around;
+    grid-gap: 10px;
+    float: left;
+    grid-auto-rows: 100px;
+    grid-template-columns: repeat(auto-fill, 100px);
+    height: 0%;
+    background-color: grey;
+    overflow-y: auto;
+}
+
+.inventory-item {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    border-radius: 20px;
+    box-shadow: 0 0 0px rgb(255, 243, 79);
+    text-align: center;
+}
+
+.inventory-item img {
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.inventory-item h1 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.inventory-item-placeholder {
+    background-color: rgb(68, 68, 68);
+    border-radius: 20px;
+}
+
+/* ------------------------------------------------------------------- */
+/* Miniame Screen styling */
+/* ------------------------------------------------------------------- */
+
+body {
+    background-image: url("/images/parking-lot.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.game-grid {
+    display: grid;
+    position: relative;
+    grid-template-rows: repeat(19, 120px);
+    grid-template-columns: repeat(25, 120px);
+    width: 90vw;
+    height: 50vh;
+    overflow: hidden;
+    outline: 10px double rgb(156, 135, 16);
+    top: -75px;
+    background-color: transparent;
+}
+
+#background-image {
+    position: absolute;
+    overflow: hidden;
+    height: 2400px;
+    width: 3120px;
+    background-image: url("/images/store-tile.png");
+    background-size: 240px 240px;
+    z-index: -1;
+}
+
+#canvas {
+    position: relative;
+    z-index: 3;
+    width: 180px;
+    height: 180px;
+    top: 0px;
+}
+
+#minigame-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+}
+
+#minigame-message {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    z-index: 4;
+    background-color: #222034;
+    color: white;
+}
+
+#minigame-message h1 {
+    flex-grow: 999;
+}
+
+#help-button-container {
+    position: relative;
+    right: 0px;
+    z-index: 5;
+    flex-grow: 1;
+}
+
+.store-shelf-container {
+    display: grid;
+    background-color: rgb(196, 128, 26);
+    outline: 2px double brown;
+    outline-width: 5px;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+.store-shelf-container .inventory-item {
+    box-shadow: 0 5px rgb(184, 119, 34);
+    background-color: rgb(255, 195, 106);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-shelf-container .inventory-item img {
+    position: relative;
+    width: 75%;
+    height: 75%;
+    animation-name: itemBounceAnimation;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.store-shelf-container .inventory-item:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px rgb(0, 0, 0);
+}
+
+#inventory-grid-container::-webkit-scrollbar {
+    display: none;
+}
+
+.shopper-container {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    grid-area: 4 / 1 / span 1 / span 1;
+    z-index: 2;
+    transition: all 0.5s;
+}
+
+#hand-swipe {
+    position: absolute;
+    top: 50%;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    animation-name: swipeBounceAnimation;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    transition: opacity 0.5s;
+}
+
+#handswipe-container {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+
+/* ------------------------------------------------------------------- */
+/* End Results Screen styling */
+/* ------------------------------------------------------------------- */
+
+#end-results-screen {
+    background-color: rgba(0, 0, 0, 0.527);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    padding-top: 25vh;
+}
+
+#end-results-screen h1 {
+    color: white;
+    font-weight: bold;
+}
+
+#end-results-screen h2 {
+    color: black;
+    font-weight: bold;
+}
+
+#end-results-screen h3 {
+    color: black;
+    font-weight: bold;
+}
+
+#end-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #222034;
+    height: 20vh;
+}
+
+#end-body {
+    height: 50vh;
+}
+
+#end-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#items-list-container {
+    max-height: 35vh;
+    overflow: auto;
+}
+
+.results-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+}
+
+.results-item img {
+    width: 35px;
+    height: 35px;
+}
+
+.results-item h2 {
+    flex-grow: 1;
+    font-size: 20px;
+}
+
+.results-item h3 {
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+#continue-button {
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    background-color: rgba(155, 255, 155, 0.788);
+}
+
+/* ------------------------------------------------------------------- */
+/* Keyframes */
+/* ------------------------------------------------------------------- */
+
+@keyframes swipeBounceAnimation {
+    from {
+        width: 100px;
+        left: 40%
+    }
+
+    45% {
+        width: 90px
+    }
+
+    90% {
+        width: 100px;
+        left: 50%
+    }
+
+    to {
+        width: 100px;
+        left: 40%
+    }
+}
+
+@keyframes clockBounceAnimation {
+    from {
+        width: 180px;
+        height: 180px
+    }
+
+    90% {
+        width: 185px;
+        height: 185px
+    }
+
+    to {
+        width: 180px;
+        height: 180px
+    }
+}
+
+@keyframes itemBounceAnimation {
+    from {
+        top: 0px
+    }
+
+    50% {
+        top: -10px
+    }
+
+    to {
+        top: 0px
+    }
+}
+
+/* ------------------------------------------------------------------- */
+/* Media Queries */
+/* ------------------------------------------------------------------- */
+
+@media only screen and (max-width: 768px) {
+    #canvas {
+        width: 120px;
+        height: 120px;
+    }
+
+    #minigame-message h1 {
+        font-size: 18px;
+    }
+
+    @keyframes clockBounceAnimation {
+        from {
+            width: 120px;
+            height: 120px
+        }
+
+        90% {
+            width: 125px;
+            height: 125px
+        }
+
+        to {
+            width: 120px;
+            height: 120px
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #canvas {
+        width: 160px;
+        height: 160px;
+    }
+
+    #minigame-message {
+        font-size: 12px;
+    }
+
+    @keyframes clockBounceAnimation {
+        from {
+            width: 160px;
+            height: 160px
+        }
+
+        90% {
+            width: 165px;
+            height: 165px
+        }
+
+        to {
+            width: 160px;
+            height: 160px
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    #canvas {
+        width: 180px;
+        height: 180px;
+    }
+
+    #minigame-message {
+        font-size: 15px;
+    }
+
+    @keyframes clockBounceAnimation {
+        from {
+            width: 180px;
+            height: 180px
+        }
+
+        90% {
+            width: 185px;
+            height: 185px
+        }
+
+        to {
+            width: 180px;
+            height: 180px
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) and (min-height: 1280px) {
+    #minigame-message {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-height: 468px) {
+    #end-results-screen h2 {
+        font-size: 20px;
+    }
+
+    .results-item h2 {
+        font-size: 15px;
+    }
+
+    .results-item h2 {
+        font-size: 10px;
+    }
+
+    #minigame-container {
+        padding: 0 0;
+    }
+}

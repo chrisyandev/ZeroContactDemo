@@ -1,0 +1,63 @@
+/* ------------------------------------------------------------------- */
+/* Tutorial Screen styling */
+/* ------------------------------------------------------------------- */
+
+#tutorial-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.205);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#tutorial-body {
+    text-align: center;
+    overflow: auto;
+    height: 50vh;
+}
+
+#tutorial-body h1 {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#tutorial-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #222034;
+    color: white;
+    height: 20vh;
+}
+
+#tutorial-header h2 {
+    font-weight: bold;
+}
+
+#tutorial-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#tutorial-footer button {
+    font-weight: bold;
+}
+
+#tutorial-container h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.img-fluid {
+    max-width: 75%;
+    height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    #tutorial-body h1 {
+        font-size: 20px;
+    }
+
+}
